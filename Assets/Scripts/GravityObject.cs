@@ -8,14 +8,21 @@ public class GravityObject : MonoBehaviour {
 	/*
 	 */
 	public bool canMove = true;
-	public const float G = 6.67e-11f;
-	public Vector2 startVelocity = Vector2.zero;
 	
 	/*
 	 */
 	private Rigidbody2D cachedBody;
 	private Transform cachedTransform;
 	private GameObject[] gravitationalObjects;
+	
+	/*
+	 */
+	public void Launch(Vector2 velocity) {
+		if(cachedBody == null) return;
+		
+		canMove = true;
+		cachedBody.velocity = velocity;
+	}
 	
 	/*
 	 */
@@ -28,7 +35,6 @@ public class GravityObject : MonoBehaviour {
 	 */
 	private void Start() {
 		gravitationalObjects = GameObject.FindGameObjectsWithTag("Gravitational");
-		cachedBody.velocity = startVelocity;
 	}
 	
 	/*
